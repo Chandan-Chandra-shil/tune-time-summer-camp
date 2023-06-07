@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-hot-toast";
 const Login = () => {
-
+  const { logIn } = useContext(AuthContext);
    const {
      register,
      handleSubmit,
      formState: { errors },
    } = useForm();
-   const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    logIn(data.email, data.password)
+      .then(() => {
+      toast.success('Login Successfully')
+      })
+      .catch(err => {
+        console.log(err.message)
+        toast.error(err.message)
+    })
+  };
+  
+
+  
+
+
   return (
     <div className="mx-auto container  md:my-44 rounded  ">
       <Helmet>
