@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { FaBars, FaTimes } from "react-icons/fa";
-
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-hot-toast";
+import avatar from "../../../assets/avatar.jpg"
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user,logOut } = useContext(AuthContext)
+  
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+      toast.success('Logout Successfully')
+      })
+      .catch(err => {
+      toast.error(err.message)
+    })
+  }
   const navItems = (
     <>
       <li>
@@ -37,16 +50,44 @@ const Navbar = () => {
           Classes
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/login"
-          className={({ isActive }) =>
-            isActive ? "text-orange-400 font-semibold" : ""
-          }
-        >
-          Login
-        </NavLink>
-      </li>
+      {user ? (
+        <>
+          <li>
+            <NavLink
+              to="dash-board"
+              className={({ isActive }) =>
+                isActive ? "text-orange-400 font-semibold" : ""
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          <div className="w-12 rounded-full">
+            <img src={user?.photoURL ? user.photoURL : avatar} />
+          </div>
+          <li>
+            <div
+              onClick={handleLogOut}
+              className="border px-8 py-2 hover:bg-orange-400 bg-orange-200 rounded hover:text-white font-bold"
+            >
+              Log out
+            </div>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? "text-orange-400 font-semibold" : ""
+              }
+            >
+              Login
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
