@@ -1,9 +1,13 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="mx-auto container  md:my-44 rounded  ">
+      <Helmet>
+        <title>Tune Time | Login</title>
+      </Helmet>
       <form className="card-body md:w-1/2 mx-auto border rounded p-10 shadow">
         <h2 className="text-3xl font-bold">Please Login!</h2>
         <div className="form-control">
@@ -38,7 +42,12 @@ const Login = () => {
           <span className="text-md">Login With</span>
           <FcGoogle className="w-6 h-6"></FcGoogle>
         </div>
-        <p className="text-center mt-4">Tune Time New?<Link to="/register" className="ms-2 text-orange-400">Register</Link></p>
+        <p className="text-center mt-4">
+          Tune Time New?
+          <Link to="/register" className="ms-2 text-orange-400">
+            Register
+          </Link>
+        </p>
       </form>
     </div>
   );
