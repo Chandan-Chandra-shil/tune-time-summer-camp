@@ -5,35 +5,39 @@ import Instructors from "../Pages/Instructors/Instructors";
 import Classes from "../Pages/Classes/Classes";
 import Login from "../Pages/Shared/Login/Login";
 import Register from "../Pages/Shared/Register/Register";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Main></Main>,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home></Home>,
       },
       {
-        path: '/instructors',
-        element:<Instructors></Instructors>,
+        path: "/instructors",
+        element: <Instructors></Instructors>,
       },
       {
-        path: '/classes',
-        element:<Classes></Classes>
+        path: "/classes",
+        element: <Classes></Classes>,
       },
       {
-        path: '/login',
-        element:<Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path: '/register',
-        element:<Register></Register>
-      }
-    
-    ]
-  }
-])
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "dash-board",
+    element: <Dashboard></Dashboard>,
+  },
+]);
 
 export default router;

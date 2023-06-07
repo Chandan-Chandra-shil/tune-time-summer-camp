@@ -2,33 +2,52 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 const Login = () => {
+
+   const {
+     register,
+     handleSubmit,
+     formState: { errors },
+   } = useForm();
+   const onSubmit = (data) => console.log(data);
   return (
     <div className="mx-auto container  md:my-44 rounded  ">
       <Helmet>
         <title>Tune Time | Login</title>
       </Helmet>
-      <form className="card-body md:w-1/2 mx-auto border rounded p-10 shadow">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="card-body md:w-1/2 mx-auto border rounded p-10 shadow"
+      >
         <h2 className="text-3xl font-bold">Please Login!</h2>
         <div className="form-control">
           <label className="label">
             <span className="label-text text-lg">Email</span>
           </label>
           <input
-            type="text"
+            type="email"
             placeholder="email"
+            {...register("email", { required: true })}
             className="input input-bordered  "
           />
+          {errors.email && (
+            <span className="text-red-600">Email is required</span>
+          )}
         </div>
         <div className="form-control">
           <label className="label ">
             <span className="label-text text-lg">Password</span>
           </label>
           <input
-            type="text"
+            type="password"
             placeholder="password"
+            {...register("password", { required: true })}
             className="input input-bordered"
           />
+          {errors.password && (
+            <span className="text-red-600">Email is required</span>
+          )}
         </div>
         <div className="form-control mt-6">
           <input
