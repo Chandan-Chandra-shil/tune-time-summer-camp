@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState(null);
-  
+
   useEffect(() => {
     fetch("http://localhost:5000/all-instructor")
       .then((res) => res.json())
@@ -21,25 +21,24 @@ const Instructors = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th >Image</th>
+              <th>Image</th>
               <th>Name</th>
               <th>Email</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
 
-            {instructors?.map((item,index) => (
+            {instructors?.map((item, index) => (
               <tr key={item._id} className="hover">
-                <th>{ index + 1}</th>
+                <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-16 h-16">
                         <img
                           src={item.image}
-                          alt="Avatar Tailwind CSS Component"
+                          alt="instructor image"
                         />
                       </div>
                     </div>
