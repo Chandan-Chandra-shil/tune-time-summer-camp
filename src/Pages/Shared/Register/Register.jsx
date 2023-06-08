@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import  { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
+
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 
-
 const Register = () => {
-  const {createUser} = useContext(AuthContext)
+ 
+  const { createUser, logInGoogle } =
+    useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -16,17 +18,27 @@ const Register = () => {
   } = useForm();
   const onSubmit = (data) => {
     createUser(data.email, data.password)
-      .then(result => {
+      .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser)
-          toast.success('Register Successfully')
-      })
-      .catch(error => {
-        console.log(error.message)
-        toast.error(error.message)
-      })
+        console.log(".................", loggedUser);
 
-     
+        toast.success("Register Successfully");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
+      });
+  };
+  // handle google login
+  const handleGoogleLogIn = () => {
+    logInGoogle()
+      .then((result) => {
+        toast.success("login successfully");
+        console.log(result.user);
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   return (
@@ -70,7 +82,7 @@ const Register = () => {
           </label>
           <input
             type="password"
-            placeholder="password"
+            placeholder="Password" 
             {...register("password", {
               required: true,
               minLength: 6,
@@ -108,6 +120,7 @@ const Register = () => {
             className="input input-bordered"
             {...register("conform", { required: true })}
           />
+
           {errors.conform && (
             <span className="text-red-600">
               Password must be six characters
@@ -132,7 +145,10 @@ const Register = () => {
           />
         </div>
         <div className="divider">or</div>
-        <div className=" btn btn-outline hover:bg-orange-400 flex gap-2 justify-center items-center">
+        <div
+          onClick={handleGoogleLogIn}
+          className=" btn btn-outline hover:bg-orange-400 flex gap-2 justify-center items-center"
+        >
           <span className="text-md">Login With</span>
           <FcGoogle className="w-6 h-6"></FcGoogle>
         </div>

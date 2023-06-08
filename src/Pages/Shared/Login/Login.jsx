@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -6,26 +6,33 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 const Login = () => {
-  const { logIn } = useContext(AuthContext);
-   const {
-     register,
-     handleSubmit,
-     formState: { errors },
-   } = useForm();
+  const [show, setShow] = useState();
+  const { logIn, logInGoogle } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data) => {
     logIn(data.email, data.password)
       .then(() => {
-      toast.success('Login Successfully')
+        toast.success("Login Successfully");
       })
-      .catch(err => {
-        console.log(err.message)
-        toast.error(err.message)
-    })
+      .catch((err) => {
+        console.log(err.message);
+        toast.error(err.message);
+      });
   };
-  
 
-  
-
+  const handleGoogleLogIn = () => {
+    logInGoogle()
+      .then(() => {
+        toast.success("login successfully");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
 
   return (
     <div className="mx-auto container  md:my-44 rounded  ">
@@ -56,11 +63,14 @@ const Login = () => {
             <span className="label-text text-lg">Password</span>
           </label>
           <input
-            type="password"
+            type={show ? "text" : "password"}
             placeholder="password"
             {...register("password", { required: true })}
             className="input input-bordered"
           />
+          <p onClick={() => setShow(!show)}>
+            {show ? <span>Show Password </span> : <span>Hide Password </span>}
+          </p>
           {errors.password && (
             <span className="text-red-600">Email is required</span>
           )}
@@ -73,7 +83,10 @@ const Login = () => {
           />
         </div>
         <div className="divider">or</div>
-        <div className=" btn btn-outline hover:bg-orange-400 flex gap-2 justify-center items-center">
+        <div
+          onClick={handleGoogleLogIn}
+          className=" btn btn-outline hover:bg-orange-400 flex gap-2 justify-center items-center"
+        >
           <span className="text-md">Login With</span>
           <FcGoogle className="w-6 h-6"></FcGoogle>
         </div>

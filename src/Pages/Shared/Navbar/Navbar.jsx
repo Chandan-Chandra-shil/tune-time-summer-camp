@@ -63,7 +63,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <div className="w-12 rounded-full">
-            <img src={user?.photoURL ? user.photoURL : avatar} />
+            <img src={user && user.photoURL ? user.photoURL : avatar } /> 
           </div>
           <li>
             <div
