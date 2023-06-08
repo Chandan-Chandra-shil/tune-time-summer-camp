@@ -16,7 +16,7 @@ const Instructors = () => {
       </h1>
 
       <div className="overflow-x-auto  container mx-auto">
-        <table className="table">
+        <table className="table ">
           {/* head */}
           <thead>
             <tr>

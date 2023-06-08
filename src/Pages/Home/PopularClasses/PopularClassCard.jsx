@@ -15,7 +15,7 @@ const PopularClassCard = ({ classItem }) => {
         <h2 className="card-title text-2xl font-bold">{name}</h2>
         <p className='text-lg font-semibold'>Price : ${price}</p>
         <div className="card-actions">
-          <span className='border md:px-8 px-6 py-2 hover:text-white bg-orange-200 font-semibold hover:bg-orange-600 rounded'>Selected</span>
+          <span className='border md:px-8 px-6 py-2 hover:text-white bg-orange-200 font-semibold hover:bg-orange-600 rounded'>Selected Course</span>
         </div>
       </div>
     </div>
