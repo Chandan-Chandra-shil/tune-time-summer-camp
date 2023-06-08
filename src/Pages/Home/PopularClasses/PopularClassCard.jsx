@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PopularClassCard = ({ classItem }) => {
-  const { image, name ,price} = classItem;
+  const { image, name ,price} = classItem || ""
   return (
     <div className="card  border hover:shadow-lg mx-4 hover:bg-orange-50 ">
       <figure className="px-4 pt-10">
