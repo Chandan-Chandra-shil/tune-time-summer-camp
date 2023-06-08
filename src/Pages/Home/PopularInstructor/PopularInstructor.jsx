@@ -16,7 +16,7 @@ const PopularInstructor = () => {
       <h2 className="text-center text-orange-600 font-bold text-xl md:text-2xl">
         Our Instructors
       </h2>
-      <h1 className="text-center mb-8 md:text-5xl text-4xl font-bold ">
+      <h1 className="text-center mb-8 md:text-5xl text-3xl font-bold ">
         Most Popular Instructor
       </h1>
 

@@ -1,4 +1,4 @@
-import  { useContext } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 import { Link } from "react-router-dom";
@@ -8,9 +8,9 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 
 const Register = () => {
- 
-  const { createUser, logInGoogle } =
-    useContext(AuthContext);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const { createUser, logInGoogle } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -36,8 +36,8 @@ const Register = () => {
         toast.success("login successfully");
         console.log(result.user);
       })
-      .catch((err) => {
-        toast.error(err.message);
+      .catch((error) => {
+        toast.error(error.message);
       });
   };
 
@@ -82,7 +82,7 @@ const Register = () => {
           </label>
           <input
             type="password"
-            placeholder="Password" 
+            placeholder="Password"
             {...register("password", {
               required: true,
               minLength: 6,
