@@ -1,56 +1,62 @@
 [
   {
-    "id": "1",
+    
     "image": "https://i.ibb.co/56zgFFp/pianojpg.jpg",
     "name": "Piano Classes",
-    "instructor": "Courtney Lee",
-    "student _enrolled": 19,
+    "instructor_name": "Courtney Lee",
+    "instructor_email": "",
+    "student_enrolled": 19,
     "available_seats": 6,
     "price": 99
   },
   {
-    "id": "2",
+    
     "image": "https://i.ibb.co/H40nsdc/drum.jpg",
     "name": "Drum Classes",
-    "instructor": "Michael Philips ",
+    "instructor_name": "Michael Philips ",
+    "instructor_email": "",
     "available_seats": 7,
-    "student _enrolled": 18,
+    "student_enrolled": 18,
     "price": 72
   },
   {
-    "id": "3",
+   
     "image": "https://i.ibb.co/86Cx4R2/guitarjpg.jpg",
     "name": "Guitar  Classes",
-    "instructor": "Francis Habbant",
+    "instructor_name": "Francis Habbant",
+    "instructor_email": "",
     "available_seats": 9,
-    "student _enrolled": 16,
+    "student_enrolled": 16,
     "price": 88
   },
   {
-    "id": "4",
+   
     "image": "https://i.ibb.co/64p7d6M/violin.jpg",
     "name": "Violin  Classes",
-    "instructor": "Merta Ferrari",
+    "instructor_name": "Merta Ferrari",
+    "instructor_email": "",
     "available_seats": 10,
-    "student _enrolled": 15,
+    "student_enrolled": 15,
     "price": 56
   },
   {
-    "id": "5",
+   
     "image": "https://i.ibb.co/WFmp03j/vocal.jpg",
     "name": "Vocal   Classes",
-    "instructor": "Kety Johnson",
+    "instructor_name": "Kety Johnson",
+    "instructor_email": "",
     "available_seats": 11,
-    "student _enrolled": 14,
+    "student_enrolled": 14,
     "price": 46
   },
   {
-    "id": "6",
+   
     "image": "https://i.ibb.co/9s3Pp6y/winds.jpg",
-    "name": "Winds   Classes",
-    "instructor": "Jaacob Black ",
+    "name": "Winds  Classes",
+    "instructor_name": "Jaacob Black ",
+    "instructor_email": "",
     "available_seats": 12,
-    "student _enrolled": 13,
+    "student_enrolled": 13,
     "price": 44
   }
 ]

@@ -93,7 +93,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-orange-50 shadow-sm">
-      <div className=" px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl  ">
+      <div className=" px-4 py-5 container mx-auto  ">
         <div className="relative flex items-center justify-between">
           {/* Logo Section */}
           <Link to="/" className="inline-flex items-center">
