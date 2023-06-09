@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ClassesCard from "./ClassesCard";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   const [classItems, setClassItems] = useState(null);
@@ -12,6 +13,9 @@ const Classes = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Tune Time | Classes</title>
+      </Helmet>
       <h1 className="text-center py-12  font-bold md:text-5xl text-4xl   bg-orange-400">
         Our Classes
       </h1>

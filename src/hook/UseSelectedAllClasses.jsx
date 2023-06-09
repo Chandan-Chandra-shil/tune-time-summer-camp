@@ -13,7 +13,7 @@ const UseSelectedAllClasses = () => {
       return res.json();
     },
   });
-  return [selectedItem, isLoading];
+  return [selectedItem,isLoading];
 };
 
 export default UseSelectedAllClasses;

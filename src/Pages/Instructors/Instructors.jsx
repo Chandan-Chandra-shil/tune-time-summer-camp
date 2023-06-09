@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState(null);
@@ -11,6 +12,9 @@ const Instructors = () => {
 
   return (
     <div className=" min-h-screen">
+      <Helmet>
+        <title>Tune Time | Instructors</title>
+      </Helmet>
       <h1 className="text-center py-12  font-bold md:text-5xl text-4xl   bg-orange-400">
         Our Instructors
       </h1>
@@ -36,10 +40,7 @@ const Instructors = () => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-16 h-16">
-                        <img
-                          src={item.image}
-                          alt="instructor image"
-                        />
+                        <img src={item.image} alt="instructor image" />
                       </div>
                     </div>
                   </div>

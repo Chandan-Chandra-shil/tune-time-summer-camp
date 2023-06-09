@@ -1,12 +1,16 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 const Dashboard = () => {
   const isAdmin = true;
   const isInstructor = true;
 
   return (
     <div>
+      <Helmet>
+        <title>Tune Time | Dashboard</title>
+      </Helmet>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
@@ -54,9 +58,18 @@ const Dashboard = () => {
               <FaArrowLeft></FaArrowLeft>
               <span> Back Home</span>
             </Link>
-            <div className=" divider "></div>
+            <div className="divider"></div>
 
-            <li>
+            <>
+              <li>
+                <Link to="/dash-board/add-class">Add a Class</Link>
+              </li>
+              <li>
+                <Link to="/dash-board/my-classes">My Classes</Link>
+              </li>
+            </>
+
+            {/* <li>
               <Link to="/dash-board/selected-classes">Selected Classes</Link>
             </li>
             <li>
@@ -64,7 +77,7 @@ const Dashboard = () => {
             </li>
             <li>
               <Link to="/dash-board/payment-history">payment History</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
