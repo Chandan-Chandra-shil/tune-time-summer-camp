@@ -21,7 +21,12 @@ const Register = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    if (data.password !== confirmPassword) {
+      toast.error("password and confirm password does not match");
+      return;
+    }
     createUser(data.email, data.password).then((result) => {
+      
       const loggedUser = result.user;
       console.log(loggedUser);
       updateUserProfile(data.photo, data.photoURL)
@@ -122,16 +127,12 @@ const Register = () => {
           </label>
           <input
             type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="conform password"
             className="input input-bordered"
-            {...register("conform", { required: true })}
+            required
           />
-
-          {errors.conform && (
-            <span className="text-red-600">
-              Password must be six characters
-            </span>
-          )}
         </div>
         <div className="form-control">
           <label className="label">
