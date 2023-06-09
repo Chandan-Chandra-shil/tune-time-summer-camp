@@ -59,17 +59,17 @@ const Dashboard = () => {
               <span> Back Home</span>
             </Link>
             <div className="divider"></div>
-
-            <>
-              <li>
+            
+                {/* instructor dashboard */}
+           {/*    <li>
                 <Link to="/dash-board/add-class">Add a Class</Link>
               </li>
               <li>
                 <Link to="/dash-board/my-classes">My Classes</Link>
-              </li>
-            </>
-
-            {/* <li>
+              </li> */}
+          
+            {/*  student dashboard */}
+            <li>
               <Link to="/dash-board/selected-classes">Selected Classes</Link>
             </li>
             <li>
@@ -77,7 +77,7 @@ const Dashboard = () => {
             </li>
             <li>
               <Link to="/dash-board/payment-history">payment History</Link>
-            </li> */}
+            </li>
           </ul>
         </div>
       </div>
