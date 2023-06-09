@@ -7,27 +7,31 @@ const ClassesCard = ({ classItem }) => {
 const location= useLocation()
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
-  const { image, name, price, instructor_name, available_seats } =
+  const { image, name, price, instructor_name, available_seats ,_id } =
     classItem || "";
   
-  const handleSelectedClasses = () => {
-    
-    if (user) {
-      fetch("http://localhost:5000/all-selectedClasses")
-        .then(res => res.json())
-        .then(data => {
-          if (data.insertedId) {
-           toast.success("selected successfully");
-        }
+  const handleSelectedClasses = (classItem) => {
+    if (user && user.email) {
+      const selectedItems = { selectedId: _id, image, name, price, instructor_name, available_seats, email: user.email }
+      console.log("from",selectedItems)
+      fetch("http://localhost:5000/all-selectedClasses", {
+        method: "POST",
+        headers: {
+        'content-type': 'application/json'
+        },
+        body:JSON.stringify(selectedItems)
       })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            toast.success("selected successfully");
+          }
+        });
+    } else {
+      toast.error("Please login then select the class");
+      navigate("/login", { state: { from: location } });
     }
-    else {
-      toast.error('Please login then select the class')
-        navigate('/login',{state:{from:location}})
-    }
-  
-  
-  }
+  };
 
   return (
     <div className="card  border hover:shadow-lg mx-4 hover:bg-orange-50 ">
