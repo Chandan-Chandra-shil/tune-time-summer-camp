@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ClassesCard = ({ classItem }) => {
+const location= useLocation()
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
   const { image, name, price, instructor_name, available_seats } =
     classItem || "";
+  
+  const handleSelectedClasses = () => {
+    
+    if (user) {
+      fetch("http://localhost:5000/all-selectedClasses")
+        .then(res => res.json())
+        .then(data => {
+          if (data.insertedId) {
+           toast.success("selected successfully");
+        }
+      })
+    }
+    else {
+      toast.error('Please login then select the class')
+        navigate('/login',{state:{from:location}})
+    }
+  
+  
+  }
+
   return (
     <div className="card  border hover:shadow-lg mx-4 hover:bg-orange-50 ">
       <figure className="px-4 pt-10">
@@ -22,8 +48,8 @@ const ClassesCard = ({ classItem }) => {
         <div className="card-actions justify-end items-center">
           <div className=""> Price: ${price}</div>
 
-          <div className="border px-4 py-2 hover:text-white bg-orange-100 font-semibold hover:bg-orange-600 rounded">
-            Selected Course
+          <div onClick={()=>handleSelectedClasses(classItem)} className="border px-4 py-2 hover:text-white bg-orange-100 font-semibold hover:bg-orange-600 rounded">
+            Select
           </div>
         </div>
       </div>

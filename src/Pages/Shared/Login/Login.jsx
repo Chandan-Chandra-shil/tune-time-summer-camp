@@ -1,22 +1,26 @@
 import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 const Login = () => {
   const [show, setShow] = useState();
   const { logIn, logInGoogle } = useContext(AuthContext);
+  const location = useLocation()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const from = location.state?.from?.pathname || "/";
   const onSubmit = (data) => {
     logIn(data.email, data.password)
       .then(() => {
         toast.success("Login Successfully");
+        navigate(from ,{replace:true})
       })
       .catch((err) => {
         console.log(err.message);
@@ -28,6 +32,7 @@ const Login = () => {
     logInGoogle()
       .then(() => {
         toast.success("login successfully");
+         navigate(from, { replace: true });
       })
       .catch((err) => {
         toast.error(err.message);

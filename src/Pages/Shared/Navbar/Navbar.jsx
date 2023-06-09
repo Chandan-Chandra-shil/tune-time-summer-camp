@@ -7,7 +7,8 @@ import { toast } from "react-hot-toast";
 import avatar from "../../../assets/avatar.jpg"
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user,logOut } = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext)
+  
   
   const handleLogOut = () => {
     logOut()

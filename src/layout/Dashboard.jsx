@@ -2,6 +2,9 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 const Dashboard = () => {
+  const isAdmin = true;
+  const isInstructor = true;
+
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -19,9 +22,31 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4  w-80  h-full bg-orange-100 ">
             {/* Sidebar content here */}
+
+            {/*  {isAdmin ? (
+              <>
+                <p className="text-center text-2xl font-bold mt-6">
+                  Admin Dashboard
+                </p>
+              </>
+            ) : isInstructor ? (
+              <>
+                <p className="text-center text-2xl font-bold mt-6">
+                  Instructor Dashboard
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-center text-2xl font-bold mt-6">
+                  Student Dashboard
+                </p>
+              </>
+            )} */}
+
             <p className="text-center text-2xl font-bold mt-6">
               Student Dashboard
             </p>
+
             <Link
               className=" hover:text-orange-400 flex justify-center items-center gap-2 my-4"
               to="/"
@@ -30,6 +55,7 @@ const Dashboard = () => {
               <span> Back Home</span>
             </Link>
             <div className=" divider "></div>
+
             <li>
               <Link to="/dash-board/selected-classes">Selected Classes</Link>
             </li>

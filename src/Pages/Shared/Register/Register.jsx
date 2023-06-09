@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../../Provider/AuthProvider";
@@ -10,31 +10,37 @@ import { toast } from "react-hot-toast";
 const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { createUser, logInGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { createUser, logInGoogle, updateUserProfile } =
+    useContext(AuthContext);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(".................", loggedUser);
-
-        toast.success("Register Successfully");
-      })
-      .catch((error) => {
-        console.log(error.message);
-        toast.error(error.message);
-      });
+    console.log(data);
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      updateUserProfile(data.photo, data.photoURL)
+        .then(() => {
+          toast.success("Register Successfully");
+          navigate("/");
+          reset();
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    });
   };
   // handle google login
   const handleGoogleLogIn = () => {
     logInGoogle()
-      .then((result) => {
+      .then(() => {
         toast.success("login successfully");
-        console.log(result.user);
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error.message);
@@ -127,16 +133,18 @@ const Register = () => {
             </span>
           )}
         </div>
-        <div className="form-control w-full max-w-xs">
+        <div className="form-control">
           <label className="label">
-            <span className="label-text text-lg">Pick a file</span>
+            <span className="label-text text-lg">Photo URL</span>
           </label>
           <input
-            type="file"
-            className="file-input file-input-bordered w-full max-w-xs"
-            {...register("file")}
+            type="text"
+            {...register("photo URL")}
+            placeholder="photo url"
+            className="input input-bordered  "
           />
         </div>
+
         <div className="form-control mt-6">
           <input
             type="submit"
