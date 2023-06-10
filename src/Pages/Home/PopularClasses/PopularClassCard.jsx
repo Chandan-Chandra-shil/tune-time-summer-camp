@@ -8,7 +8,8 @@ const PopularClassCard = ({ classItem }) => {
         <img
           src={image}
           alt="image"
-          className="rounded-xl hover:zoom-in "
+
+          className="rounded-xl hover:scale-110 "
         />
       </figure>
       <div className="card-body items-center text-center">

@@ -3,8 +3,8 @@ import { Link, Outlet } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 const Dashboard = () => {
-  const isAdmin = true;
-  const isInstructor =false;
+  const isAdmin = false;
+  const isInstructor =true;
 
   return (
     <div>
@@ -25,7 +25,7 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4  w-80  h-full bg-orange-100 ">
-            {/*  // { isAdmin &&  <>admin dashboard<\> || isInstructor &&  <>instructor dashboar<\> : <> student dashboard <\></> */}
+           
 
             {(isAdmin && (
               <>

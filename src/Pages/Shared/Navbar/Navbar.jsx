@@ -64,7 +64,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <div className="w-12 rounded-full">
-            <img src={user && user.photoURL ? user.photoURL : avatar } /> 
+            <img referrerPolicy="no-referrer" src={user && user.photoURL ? user.photoURL : avatar } /> 
           </div>
           <li>
             <div

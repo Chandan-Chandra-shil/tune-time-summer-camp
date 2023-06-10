@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import ClassesCard from "./ClassesCard";
 import { Helmet } from "react-helmet-async";
+import Loader from "../../components/Loader";
 
 const Classes = () => {
   const [classItems, setClassItems] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     fetch("http://localhost:5000/all-class")
       .then((res) => res.json())
-      .then((data) => setClassItems(data));
+      .then((data) => {
+        setClassItems(data);
+        setLoading(false);
+      });
   }, []);
-
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
     <div className="">
       <Helmet>

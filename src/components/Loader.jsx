@@ -1,19 +1,20 @@
 import React from 'react';
-import { RotateLoader } from "react-spinners";
+import {  DotLoader } from "react-spinners";
 
 const Loader = () => {
   return (
-    <div
+      <div
       className="
-      h-[70vh]
+      h-[60vh]
       flex 
       flex-col 
       justify-center 
       items-center 
     "
     >
-      <RotateLoader size={100} color="red" />
+      <DotLoader size={100} color="orange" />
     </div>
+    
   );
 };
 

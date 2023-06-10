@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import Loader from "../../components/Loader";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState(null);
-
+const [loading,setLoading] = useState(false)
   useEffect(() => {
+    setLoading(true)
     fetch("http://localhost:5000/all-instructors")
       .then((res) => res.json())
-      .then((data) => setInstructors(data));
+      .then((data) => {
+        setInstructors(data)
+        setLoading(false)
+      })
   }, []);
-
+  if (loading) {
+     return <Loader></Loader>
+   }
   return (
     <div className=" min-h-screen">
       <Helmet>
