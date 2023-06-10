@@ -1,10 +1,24 @@
 import React from 'react';
 import UseSelectedAllClasses from '../../../hook/UseSelectedAllClasses';
 import { Helmet } from 'react-helmet-async';
+import { toast } from 'react-hot-toast';
 
 const SelectedClasses = () => {
   const [selectedItem] = UseSelectedAllClasses()
-  // const {image, name, price, instructor_name, available_seats ,_id}
+  const handleDelete = (item) => {
+    fetch(`http://localhost:5000/all-selectedClasses/${item._id}`,
+      {
+        method:'DELETE'
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        if (data.deletedCount > 0) {
+        toast.success("Delete Successfully")
+      }
+    })
+    
+  }
   return (
     <div>
       <Helmet>
@@ -48,7 +62,7 @@ const SelectedClasses = () => {
                   <span className="border px-4 py-2 rounded-md font-bold hover:bg-orange-600  bg-orange-500">
                     Pay
                   </span>
-                  <span className="border px-4 py-2 rounded-md font-bold hover:bg-red-600  bg-red-500 ms-2 text-white">
+                  <span onClick={()=>handleDelete(item)} className="border px-4 py-2 rounded-md font-bold hover:bg-red-600  bg-red-500 ms-2 text-white">
                     Delete
                   </span>
                 </td>

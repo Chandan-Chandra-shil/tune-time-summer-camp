@@ -26,18 +26,31 @@ const Register = () => {
       return;
     }
     createUser(data.email, data.password).then((result) => {
-      
       const loggedUser = result.user;
       console.log(loggedUser);
-      updateUserProfile(data.photo, data.photoURL)
+
+      updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          toast.success("Register Successfully");
-          navigate("/");
-          reset();
+          const saveUser = { name: data.name, email: data.email, image:data.photoURL  };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                toast.success("Register Successfully")
+                navigate("/");
+              }
+            });
         })
-        .catch((error) => {
-          toast.error(error.message);
-        });
+        .catch((error)=> {
+            toast.error(error.message)
+        })
     });
   };
   // handle google login
@@ -140,7 +153,7 @@ const Register = () => {
           </label>
           <input
             type="text"
-            {...register("photo URL")}
+            {...register("photoURL")}
             placeholder="photo url"
             className="input input-bordered  "
           />
