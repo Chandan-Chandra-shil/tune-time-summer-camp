@@ -3,8 +3,8 @@ import { Link, Outlet } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 const Dashboard = () => {
-  const isAdmin = false;
-  const isInstructor =true;
+  const isAdmin = true;
+  const isInstructor =false;
 
   return (
     <div>
@@ -40,6 +40,12 @@ const Dashboard = () => {
                   <span> Back Home</span>
                 </Link>
                 <div className="divider"></div>
+                <li>
+                  <Link to="/dash-board/manage-classes">Manege Classes</Link>
+                </li>
+                <li>
+                  <Link to="/dash-board/manage-users">Manage Users</Link>
+                </li>
               </>
             )) ||
               (isInstructor && (
