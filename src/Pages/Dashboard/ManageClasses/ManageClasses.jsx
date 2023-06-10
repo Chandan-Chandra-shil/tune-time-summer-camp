@@ -1,26 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import Loader from "../../../components/Loader";
 
 const ManageClasses = () => {
-  const [classes, setClasses] = useState(null)
-  console.log(classes)
+  const [classes, setClasses] = useState(null);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     fetch("http://localhost:5000/all-class")
       .then((res) => res.json())
-      .then((data) => setClasses(data));
-
-  },[])
+      .then((data) => {
+        setClasses(data);
+        setLoading(false);
+      });
+  }, []);
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
-    <div>
+    <div className="border md:p-10 p-5 shadow-md">
       <Helmet>
         <title>Tune Time | Manage Classes</title>
       </Helmet>
-      <h2>Selected Classes </h2>
+      <h2 className="text-center text-3xl font-bold mb-4 text-orange-600">
+        Manage All Classes
+      </h2>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead className='bg-orange-200 text-md'>
+          <thead className="bg-orange-200 text-md">
             <tr>
               <th>#</th>
               <th>Class Image</th>

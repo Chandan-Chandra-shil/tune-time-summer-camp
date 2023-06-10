@@ -13,7 +13,7 @@ const location= useLocation()
   const handleSelectedClasses = (classItem) => {
     if (user && user.email) {
       const selectedItems = { selectedId: _id, image, name, price, instructor_name, available_seats, email: user.email }
-      console.log("from",selectedItems)
+      
       fetch("http://localhost:5000/all-selectedClasses", {
         method: "POST",
         headers: {

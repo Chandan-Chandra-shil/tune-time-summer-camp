@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import Loader from "../../../components/Loader";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState(null);
-  console.log(users);
+ const [loading, setLoading] = useState(false);
   useEffect(() => {
+     setLoading(true);
     fetch("http://localhost:5000/all-users")
       .then((res) => res.json())
-      .then((data) => setUsers(data));
+      .then((data) => {
+        setUsers(data)
+        setLoading(false)
+      })
   }, []);
+
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
-    <div>
+    <div className="border md:p-10 p-5 shadow-md">
       <Helmet>
         <title>Tune Time | Manage Users</title>
       </Helmet>
-      <h2> </h2>
-      <div className="overflow-x-auto">
+      <h2 className="text-center text-3xl font-bold mb-4 text-orange-600">Registers All Users </h2>
+      <div className="overflow-x-auto  ">
         <table className="table">
           {/* head */}
           <thead className="bg-orange-200 text-md">

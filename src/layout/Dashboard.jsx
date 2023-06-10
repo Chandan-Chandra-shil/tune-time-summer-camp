@@ -4,7 +4,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 const Dashboard = () => {
   const isAdmin = false;
-  const isInstructor =true;
+  const isInstructor =false;
 
   return (
     <div>
@@ -25,11 +25,9 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4  w-80  h-full bg-orange-100 ">
-           
-
             {(isAdmin && (
               <>
-                <p className="text-center text-2xl font-bold mt-6">
+                <p className="text-center text-orange-600 text-2xl font-bold mt-6">
                   Admin Dashboard
                 </p>
                 <Link
@@ -50,7 +48,7 @@ const Dashboard = () => {
             )) ||
               (isInstructor && (
                 <>
-                  <p className="text-center text-2xl font-bold mt-6">
+                  <p className="text-center text-orange-600 text-2xl font-bold mt-6">
                     Instructor Dashboard
                   </p>
                   <Link
@@ -70,7 +68,7 @@ const Dashboard = () => {
                 </>
               )) || (
                 <>
-                  <p className="text-center text-2xl font-bold mt-6">
+                  <p className="text-center text-orange-600 text-2xl font-bold mt-6">
                     Student Dashboard
                   </p>
                   <Link
