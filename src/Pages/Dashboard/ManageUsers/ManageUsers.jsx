@@ -86,7 +86,7 @@ const ManageUsers = () => {
                   <button
                     disabled={user?.role === "instructor"}
                     onClick={() => handleMakeInstructor(user)}
-                    className="btn btn-accent"
+                    className="btn btn-accent btn-sm ms-2"
                   >
                     {user?.role === "instructor"
                       ? "instructor"

@@ -1,10 +1,15 @@
-import React from "react";
+
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+
+import useAdmin from "../hook/UseAdmin";
+import UserInstructor from "../hook/UseInstructor";
 const Dashboard = () => {
-  const isAdmin = true;
-  const isInstructor = false;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  //  const isInstructor = false;
+  const isInstructor = UserInstructor();
 
   return (
     <div>
@@ -99,37 +104,7 @@ const Dashboard = () => {
                 </>
               )}
 
-            {/*   <p className="text-center text-2xl font-bold mt-6">
-              Student Dashboard
-            </p>
-
-            <LinkNavLink
-              className=" hover:text-orange-400 flex justify-center items-center gap-2 my-4"
-              to="/"
-            >
-              <FaArrowLeft></FaArrowLeft>
-              <span> Back Home</span>
-            </LinkNavLink>
-            <div className="divider"></div> */}
-
-            {/* instructor dashboard */}
-            {/*    <li>
-                <Link to="/dash-board/add-class">Add a Class</Link>
-              </li>
-              <li>
-                <Link to="/dash-board/my-classes">My Classes</Link>
-              </li> */}
-
-            {/*  student dashboard */}
-            {/* <li>
-              <Link to="/dash-board/selected-classes">Selected Classes</Link>
-            </li>
-            <li>
-              <Link to="/dash-board/enrolled-classes">Enrolled Classes</Link>
-            </li>
-            <li>
-              <Link to="/dash-board/payment-history">payment History</Link>
-            </li> */}
+            
           </ul>
         </div>
       </div>

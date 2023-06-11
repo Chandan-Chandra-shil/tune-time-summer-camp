@@ -17,7 +17,7 @@ const SelectedClasses = () => {
     },
   });
   const handleDelete = (item) => {
-    fetch(`http://localhost:5000/all-selectedClasses/${item._id}`, {
+    fetch(`http://localhost:5000/all-selectedClasses/${item?._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -54,21 +54,21 @@ const SelectedClasses = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {selectedItem.map((item, index) => (
+            {selectedItem?.map((item, index) => (
               <tr key={item._id}>
                 <td>{index + 1}</td>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={item.image} alt="image" />
+                        <img src={item?.image} alt="image" />
                       </div>
                     </div>
                   </div>
                 </td>
-                <td>{item.name}</td>
-                <td>{item.instructor_name}</td>
-                <td>{item.price}</td>
+                <td>{item?.name}</td>
+                <td>{item?.instructor_name}</td>
+                <td>{item?.price}</td>
                 <td>
                   <span className="border px-4 py-2 rounded-md font-bold hover:bg-orange-600  bg-orange-500">
                     Pay
