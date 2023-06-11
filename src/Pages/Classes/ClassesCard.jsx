@@ -46,7 +46,7 @@ const location= useLocation()
         </h2>
 
         <p className="text-md">
-          <span className="text-lg font-bold"> Name</span> : {instructor_name}
+          <span className="text-lg "> Instructor Name</span> : {instructor_name}
         </p>
 
         <div className="card-actions justify-end items-center">

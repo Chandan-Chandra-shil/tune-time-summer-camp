@@ -4,7 +4,7 @@ import Loader from "../../components/Loader";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState(null);
-const [loading,setLoading] = useState(false)
+  const [loading,setLoading] = useState(false)
   useEffect(() => {
     setLoading(true)
     fetch("http://localhost:5000/all-instructors")
@@ -17,8 +17,9 @@ const [loading,setLoading] = useState(false)
   if (loading) {
      return <Loader></Loader>
    }
+  
   return (
-    <div className=" min-h-screen">
+    <div className="">
       <Helmet>
         <title>Tune Time | Instructors</title>
       </Helmet>
@@ -26,14 +27,14 @@ const [loading,setLoading] = useState(false)
         Our Instructors
       </h1>
 
-      <div className="overflow-x-auto  container mx-auto">
+      <div className="overflow-x-auto shadow border rounded p-5  my-12 container mx-auto">
         <table className="table ">
           {/* head */}
-          <thead>
+          <thead className="bg-base-200 text-md py-2">
             <tr>
               <th>#</th>
               <th>Image</th>
-              <th>Name</th>
+              <th>Instructor Name</th>
               <th>Email</th>
             </tr>
           </thead>

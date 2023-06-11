@@ -15,9 +15,9 @@ const PopularClassCard = ({ classItem }) => {
       <div className="card-body items-center text-center">
         <h2 className="card-title text-2xl font-bold">{name}</h2>
         <p className='text-lg font-semibold'>Price : ${price}</p>
-        <div className="card-actions">
+        {/* <div className="card-actions">
           <span className='border md:px-8 px-6 py-2 hover:text-white bg-orange-200 font-semibold hover:bg-orange-600 rounded'>Select</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

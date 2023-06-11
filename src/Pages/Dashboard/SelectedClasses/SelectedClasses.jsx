@@ -29,12 +29,14 @@ const SelectedClasses = () => {
       });
   };
   return (
-    <div>
+    <div className="w-[70%] border md:p-10 p-5 shadow-md">
       <Helmet>
         <title>Tune Time | Selected Classes</title>
       </Helmet>
-      <h2>Selected Classes </h2>
-      <p>{selectedItem?.length}</p>
+      <h2 className="text-center text-3xl font-bold mb-4 text-orange-600">
+        All Selected Classes
+      </h2>
+
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

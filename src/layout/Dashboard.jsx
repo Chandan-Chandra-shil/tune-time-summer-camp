@@ -1,10 +1,10 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 const Dashboard = () => {
-  const isAdmin = false;
-  const isInstructor =false;
+  const isAdmin = true;
+  const isInstructor = false;
 
   return (
     <div>
@@ -24,7 +24,7 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4  w-80  h-full bg-orange-100 ">
+          <ul className="menu p-4  w-80 h-full bg-orange-200   ">
             {(isAdmin && (
               <>
                 <p className="text-center text-orange-600 text-2xl font-bold mt-6">
@@ -38,11 +38,13 @@ const Dashboard = () => {
                   <span> Back Home</span>
                 </Link>
                 <div className="divider"></div>
-                <li>
-                  <Link to="/dash-board/manage-classes">Manege Classes</Link>
+                <li >
+                  <NavLink to="/dash-board/manage-classes">
+                    Manege Classes
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dash-board/manage-users">Manage Users</Link>
+                  <NavLink to="/dash-board/manage-users">Manage Users</NavLink>
                 </li>
               </>
             )) ||
@@ -60,10 +62,10 @@ const Dashboard = () => {
                   </Link>
                   <div className="divider"></div>
                   <li>
-                    <Link to="/dash-board/add-class">Add a Class</Link>
+                    <NavLink to="/dash-board/add-class">Add a Class</NavLink>
                   </li>
                   <li>
-                    <Link to="/dash-board/my-classes">My Classes</Link>
+                    <NavLink to="/dash-board/my-classes">My Classes</NavLink>
                   </li>
                 </>
               )) || (
@@ -80,19 +82,19 @@ const Dashboard = () => {
                   </Link>
                   <div className="divider"></div>
                   <li>
-                    <Link to="/dash-board/selected-classes">
+                    <NavLink to="/dash-board/selected-classes">
                       Selected Classes
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to="/dash-board/enrolled-classes">
+                    <NavLink to="/dash-board/enrolled-classes">
                       Enrolled Classes
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to="/dash-board/payment-history">
+                    <NavLink to="/dash-board/payment-history">
                       payment History
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               )}
@@ -101,13 +103,13 @@ const Dashboard = () => {
               Student Dashboard
             </p>
 
-            <Link
+            <LinkNavLink
               className=" hover:text-orange-400 flex justify-center items-center gap-2 my-4"
               to="/"
             >
               <FaArrowLeft></FaArrowLeft>
               <span> Back Home</span>
-            </Link>
+            </LinkNavLink>
             <div className="divider"></div> */}
 
             {/* instructor dashboard */}
