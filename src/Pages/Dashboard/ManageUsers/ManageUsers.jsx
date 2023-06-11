@@ -21,9 +21,19 @@ const ManageUsers = () => {
     })
     
   }
-  /* const handleMakeInstructor = id => {
-    
-  } */
+  const handleMakeInstructor = user => {
+    console.log("test...",user)
+     fetch(`http://localhost:5000/admin/instructor/${user._id}`, {
+       method: "PATCH",
+     })
+       .then((res) => res.json())
+       .then((data) => {
+         if (data.modifiedCount) {
+           refetch();
+           toast.success(`${user.name} is an Instructor`);
+         }
+       });
+  }
 
   return (
     <div className="border md:p-10 p-5 shadow-md">
@@ -43,6 +53,8 @@ const ManageUsers = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Action</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -61,16 +73,25 @@ const ManageUsers = () => {
                 </td>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
+                <td>{user?.role}</td>
 
                 <td>
-                  <span onClick={()=>handleMakeAdmin(user)} className="border px-4 py-2 rounded-md text-white font-bold hover:bg-orange-600  bg-orange-500">
+                  <button
+                    disabled={user?.role === 'admin'}
+                    onClick={() => handleMakeAdmin(user)}
+                    className="btn btn-warning btn-sm"
+                  >
                     {user?.role === "admin" ? "admin" : "Make Admin"}
-                  </span>
-                  <span className="border px-4 py-2 rounded-md font-bold hover:bg-orange-600  bg-orange-500 ms-2 text-white">
+                  </button>
+                  <button
+                    disabled={user?.role === "instructor"}
+                    onClick={() => handleMakeInstructor(user)}
+                    className="btn btn-accent"
+                  >
                     {user?.role === "instructor"
                       ? "instructor"
                       : "Make Instructor"}
-                  </span>
+                  </button>
                 </td>
               </tr>
             ))}
