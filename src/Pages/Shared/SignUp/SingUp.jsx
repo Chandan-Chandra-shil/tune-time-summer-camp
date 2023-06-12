@@ -1,20 +1,22 @@
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 
-
-
-const Register = () => {
+const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
-  const { createUser, logInGoogle, updateUserProfile } =
-    useContext(AuthContext);
+
+  const {
+    createUser,
+    logInGoogle: googleSignIn,
+    updateUserProfile,
+  } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -33,7 +35,11 @@ const Register = () => {
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          const saveUser = { name: data.name, email: data.email, image:data.photoURL  };
+          const saveUser = {
+            name: data.name,
+            email: data.email,
+            image: data.photoURL,
+          };
           fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
@@ -45,22 +51,37 @@ const Register = () => {
             .then((data) => {
               if (data.insertedId) {
                 reset();
-                toast.success("Register Successfully")
+                toast.success("Register Successfully");
                 navigate("/");
               }
             });
         })
-        .catch((error)=> {
-            toast.error(error.message)
-        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     });
   };
   // handle google login
-  const handleGoogleLogIn = () => {
-    logInGoogle()
-      .then(() => {
-        toast.success("login successfully");
-        navigate("/");
+  const handleGoogleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        const saveUser = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            toast.success("login successfully");
+            navigate("/");
+          });
       })
       .catch((error) => {
         toast.error(error.message);
@@ -70,13 +91,13 @@ const Register = () => {
   return (
     <div className="mx-auto container  md:my-6 rounded  ">
       <Helmet>
-        <title>Tune Time | Register</title>
+        <title>Tune Time | SignUp</title>
       </Helmet>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="card-body md:w-1/2 mx-auto border rounded p-10 shadow"
       >
-        <h2 className="text-3xl font-bold">Please Register!</h2>
+        <h2 className="text-3xl font-bold">Please SignUp!</h2>
         <div className="form-control">
           <label className="label">
             <span className="label-text text-lg">Name</span>
@@ -165,15 +186,15 @@ const Register = () => {
           <input
             type="submit"
             className="border px-8 py-2 bg-orange-200 rounded font-semibold hover:bg-orange-400"
-            value="Register"
+            value="SignUp"
           />
         </div>
         <div className="divider">or</div>
         <div
-          onClick={handleGoogleLogIn}
+          onClick={handleGoogleSignUp}
           className=" btn btn-outline hover:bg-orange-400 flex gap-2 justify-center items-center"
         >
-          <span className="text-md">Login With</span>
+          <span className="text-md">SignUp With</span>
           <FcGoogle className="w-6 h-6"></FcGoogle>
         </div>
         <p className="text-center mt-4">
@@ -187,4 +208,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignUp;

@@ -97,8 +97,8 @@ const Login = () => {
         </div>
         <p className="text-center mt-4">
           Tune Time New?
-          <Link to="/register" className="ms-2 text-orange-400">
-            Register
+          <Link to="/signUp" className="ms-2 text-orange-400">
+            SignUp
           </Link>
         </p>
       </form>

@@ -7,7 +7,8 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 const SelectedClasses = () => {
   const { user } = useContext(AuthContext);
-  const {refetch, data: selectedItem = [] } = useQuery({
+  const { refetch, data: selectedItem = [] } = useQuery({
+   
     queryKey: ["all-selectedClasses", user?.email],
     queryFn: async () => {
       const res = await fetch(
@@ -16,6 +17,7 @@ const SelectedClasses = () => {
       return res.json();
     },
   });
+  console.log("......",selectedItem)
   const handleDelete = (item) => {
     fetch(`http://localhost:5000/all-selectedClasses/${item?._id}`, {
       method: "DELETE",

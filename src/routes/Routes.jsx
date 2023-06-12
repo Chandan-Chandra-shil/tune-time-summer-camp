@@ -4,7 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import Instructors from "../Pages/Instructors/Instructors";
 import Classes from "../Pages/Classes/Classes";
 import Login from "../Pages/Shared/Login/Login";
-import Register from "../Pages/Shared/Register/Register";
+import SignUp from "../Pages/Shared/SignUp/SingUp";
 
 import SelectedClasses from "../Pages/Dashboard/SelectedClasses/SelectedClasses";
 import Dashboard from "../layout/Dashboard";
@@ -14,6 +14,7 @@ import AddAClass from "../Pages/Dashboard/AddAClass/AddAClass";
 import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
+
 
 const router = createBrowserRouter([
   {
@@ -37,8 +38,8 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: "/register",
-        element: <Register></Register>,
+        path: "/signUp",
+        element: <SignUp></SignUp>,
       },
     ],
   },
@@ -50,32 +51,30 @@ const router = createBrowserRouter([
         path: "selected-classes",
         element: <SelectedClasses></SelectedClasses>,
       },
-       {
+      {
         path: "enrolled-classes",
-        element:<EnrolledClasses></EnrolledClasses>
+        element: <EnrolledClasses></EnrolledClasses>,
       },
       {
-        path: 'payment-history',
-        element:<PaymentHistory></PaymentHistory>
+        path: "payment-history",
+        element: <PaymentHistory></PaymentHistory>,
       },
       {
-        path: 'add-class',
-        element:<AddAClass></AddAClass>
+        path: "add-class",
+        element: <AddAClass></AddAClass>,
       },
       {
-        path: 'my-classes',
-        element:<MyClasses></MyClasses>
-        
+        path: "my-classes",
+        element: <MyClasses></MyClasses>,
       },
       {
         path: "manage-users",
-        element:<ManageUsers></ManageUsers>
+        element: <ManageUsers></ManageUsers>,
       },
       {
-        path: 'manage-classes',
-        element:<ManageClasses></ManageClasses>
-      }
-     
+        path: "manage-classes",
+        element: <ManageClasses></ManageClasses>,
+      },
     ],
   },
 ]);
