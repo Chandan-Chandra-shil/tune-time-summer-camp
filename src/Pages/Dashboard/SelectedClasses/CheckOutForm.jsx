@@ -68,7 +68,21 @@ const CheckoutForm = () => {
     if (paymentIntent.status === 'succeeded') {
       setTransactionId(paymentIntent.id)
       const transactionId = paymentIntent.id;
-      console.log(transactionId)
+      // save payment information
+      const payment = {
+        email: user?.email,
+        name: user?.displayName,
+        price:price,
+        transactionId: paymentIntent.id,
+      }
+       
+      axiosSecure.post('/payments', payment)
+        .then(res => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            //display confirm
+          }
+      })
       }
 
   };
