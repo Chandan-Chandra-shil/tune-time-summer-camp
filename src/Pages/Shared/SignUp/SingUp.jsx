@@ -66,6 +66,7 @@ const SignUp = () => {
     googleSignIn()
       .then((result) => {
         const loggedUser = result.user;
+        console.log("from singup ", loggedUser);
         const saveUser = {
           name: loggedUser.displayName,
           email: loggedUser.email,

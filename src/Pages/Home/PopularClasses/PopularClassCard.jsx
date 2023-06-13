@@ -11,6 +11,7 @@ const PopularClassCard = ({ classItem }) => {
         <h2 className="card-title text-2xl font-bold">{name}</h2>
         <p className="text-lg font-semibold">Price : ${price}</p>
       </div>
+      
     </div>
   );
 };

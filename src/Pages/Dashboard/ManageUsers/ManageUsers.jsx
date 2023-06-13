@@ -8,32 +8,31 @@ const ManageUsers = () => {
     const res = await fetch("http://localhost:5000/all-users");
     return res.json();
   });
-  const handleMakeAdmin = user => {
+  const handleMakeAdmin = (user) => {
     fetch(`http://localhost:5000/all-users/admin/${user._id}`, {
-      method:'PATCH'
+      method: "PATCH",
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.modifiedCount) {
-          refetch()
-        toast.success(`${user.name} is an admin`)
-      }
+          refetch();
+          toast.success(`${user.name} is an admin`);
+        }
+      });
+  };
+  const handleMakeInstructor = (user) => {
+    console.log("test...", user);
+    fetch(`http://localhost:5000/admin/instructor/${user._id}`, {
+      method: "PATCH",
     })
-    
-  }
-  const handleMakeInstructor = user => {
-    console.log("test...",user)
-     fetch(`http://localhost:5000/admin/instructor/${user._id}`, {
-       method: "PATCH",
-     })
-       .then((res) => res.json())
-       .then((data) => {
-         if (data.modifiedCount) {
-           refetch();
-           toast.success(`${user.name} is an Instructor`);
-         }
-       });
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          refetch();
+          toast.success(`${user.name} is an Instructor`);
+        }
+      });
+  };
 
   return (
     <div className="border md:p-10 p-5 shadow-md">
@@ -77,7 +76,7 @@ const ManageUsers = () => {
 
                 <td>
                   <button
-                    disabled={user?.role === 'admin'}
+                    disabled={user?.role === "admin"}
                     onClick={() => handleMakeAdmin(user)}
                     className="btn btn-warning btn-sm"
                   >

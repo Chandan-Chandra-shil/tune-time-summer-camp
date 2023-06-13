@@ -4,22 +4,30 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ClassesCard = ({ classItem }) => {
-const location= useLocation()
-  const { user } = useContext(AuthContext)
-  const navigate = useNavigate()
-  const { image, name, price, instructor_name, available_seats ,_id } =
+  const location = useLocation();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { image, name, price, instructor_name, available_seats, _id } =
     classItem || "";
-  
+
   const handleSelectedClasses = (classItem) => {
     if (user && user.email) {
-      const selectedItems = { selectedId: _id, image, name, price, instructor_name, available_seats, email: user.email }
-      
+      const selectedItems = {
+        selectedId: _id,
+        image,
+        name,
+        price,
+        instructor_name,
+        available_seats,
+        email: user.email,
+      };
+
       fetch("http://localhost:5000/all-selectedClasses", {
         method: "POST",
         headers: {
-        'content-type': 'application/json'
+          "content-type": "application/json",
         },
-        body:JSON.stringify(selectedItems)
+        body: JSON.stringify(selectedItems),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -52,7 +60,10 @@ const location= useLocation()
         <div className="card-actions justify-end items-center">
           <div className=""> Price: ${price}</div>
 
-          <div onClick={()=>handleSelectedClasses(classItem)} className="border px-4 py-2 hover:text-white bg-orange-100 font-semibold hover:bg-orange-600 rounded">
+          <div
+            onClick={() => handleSelectedClasses(classItem)}
+            className="border px-4 py-2 hover:text-white bg-orange-100 font-semibold hover:bg-orange-600 rounded"
+          >
             Select
           </div>
         </div>

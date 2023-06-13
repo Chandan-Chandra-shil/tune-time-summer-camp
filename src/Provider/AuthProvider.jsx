@@ -33,13 +33,12 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
   const logOut = () => {
-    
     return signOut(auth);
   };
 
   // update user profile
 
-  const updateUserProfile = (photo, name) => {
+  const updateUserProfile = (name, photo) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -52,20 +51,20 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       //local storage get and set token
       if (currentUser) {
-       
-         axios.post("http://localhost:5000/jwt",{ email:currentUser?.email })
-           .then((data) => {
-             
-             if (data.data) {
-               localStorage.setItem("access-token", data?.data?.token);
-               setLoading(false);
+        axios
+          .post("http://localhost:5000/jwt", {
+            email: currentUser?.email,
+          })
+          .then((data) => {
+            if (data.data) {
+              localStorage.setItem("access-token", data?.data?.token);
+              setLoading(false);
             }
-           });
+          });
       } else {
         localStorage.removeItem("access-token");
-         setLoading(false);
+        setLoading(false);
       }
-   
     });
     return () => {
       return unsubscribe();

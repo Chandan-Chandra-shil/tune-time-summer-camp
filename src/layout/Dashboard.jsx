@@ -1,16 +1,13 @@
-
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaAddressBook, FaAddressCard, FaArchive, FaArchway, FaArrowLeft, FaCalendarCheck, FaHistory, FaSave } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 
 import useAdmin from "../hook/UseAdmin";
 import UserInstructor from "../hook/UseInstructor";
 const Dashboard = () => {
-  // const isAdmin = true;
   const [isAdmin] = useAdmin();
-  //  const isInstructor = false;
+
   const [isInstructor] = UserInstructor();
- 
 
   return (
     <div>
@@ -31,11 +28,8 @@ const Dashboard = () => {
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4  w-80 h-full bg-orange-200   ">
-         
-
             {isAdmin ? (
               <>
-               
                 <p className="text-center text-orange-600 text-2xl font-bold mt-6">
                   Admin Dashboard
                 </p>
@@ -48,12 +42,24 @@ const Dashboard = () => {
                 </Link>
                 <div className="divider"></div>
                 <li>
-                  <NavLink to="/dash-board/manage-classes">
-                    Manege Classes
+                  <NavLink
+                    to="/dash-board/manage-classes"
+                    className={({ isActive }) =>
+                      isActive ? "text-orange-400 font-semibold" : ""
+                    }
+                  >
+                  <FaArchway></FaArchway>  Manege Classes
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dash-board/manage-users">Manage Users</NavLink>
+                  <NavLink
+                    to="/dash-board/manage-users"
+                    className={({ isActive }) =>
+                      isActive ? "text-orange-400 font-semibold" : ""
+                    }
+                  >
+                   <FaArchive></FaArchive> Manage Users
+                  </NavLink>
                 </li>
               </>
             ) : (
@@ -72,15 +78,28 @@ const Dashboard = () => {
                     </Link>
                     <div className="divider"></div>
                     <li>
-                      <NavLink to="/dash-board/add-class">Add a Class</NavLink>
+                      <NavLink
+                        to="/dash-board/add-class"
+                        className={({ isActive }) =>
+                          isActive ? "text-orange-400 font-semibold" : ""
+                        }
+                      >
+                       <FaAddressBook></FaAddressBook> Add a Class
+                      </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/dash-board/my-classes">My Classes</NavLink>
+                      <NavLink
+                        to="/dash-board/my-classes"
+                        className={({ isActive }) =>
+                          isActive ? "text-orange-400 font-semibold" : ""
+                        }
+                      >
+                      <FaAddressCard></FaAddressCard>  My Classes
+                      </NavLink>
                     </li>
                   </>
                 ) : (
                   <>
-            
                     <p className="text-center text-orange-600 text-2xl font-bold mt-6">
                       Student Dashboard
                     </p>
@@ -93,18 +112,33 @@ const Dashboard = () => {
                     </Link>
                     <div className="divider"></div>
                     <li>
-                      <NavLink to="/dash-board/selected-classes">
-                        Selected Classes
+                      <NavLink
+                        to="/dash-board/selected-classes"
+                        className={({ isActive }) =>
+                          isActive ? "text-orange-400 font-semibold" : ""
+                        }
+                      >
+                        <FaCalendarCheck></FaCalendarCheck> Selected Classes
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/dash-board/enrolled-classes">
-                        Enrolled Classes
+                      <NavLink
+                        to="/dash-board/enrolled-classes"
+                        className={({ isActive }) =>
+                          isActive ? "text-orange-400 font-semibold" : ""
+                        }
+                      >
+                       <FaSave></FaSave> Enrolled Classes
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/dash-board/payment-history">
-                        payment History
+                      <NavLink
+                        to="/dash-board/payment-history"
+                        className={({ isActive }) =>
+                          isActive ? "text-orange-400 font-semibold" : ""
+                        }
+                      >
+                       <FaHistory></FaHistory> payment History
                       </NavLink>
                     </li>
                   </>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaMusic } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -6,9 +7,12 @@ const Footer = () => {
     <footer className="  p-10 bg-orange-200 shadow ">
       <div className="container  mx-auto grid sm:grid-cols-1 md:grid-cols-4">
         <div>
-          <p>site logo</p>
+          <p className='mb-4'>
+           
+            <FaMusic className="text-orange-700 md:h-16 md:w-16 h-12 w-12 font-extrabold"></FaMusic>
+          </p>
           <p>
-            ACME Industries Ltd.
+            Tune Time
             <br />
             Providing reliable tech since 1992
           </p>

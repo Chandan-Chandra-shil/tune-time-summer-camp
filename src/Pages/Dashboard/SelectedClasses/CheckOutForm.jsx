@@ -2,10 +2,10 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hook/UseAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import "./CheckOutForm.css"
 
-const CheckoutForm = () => {
-   const price = localStorage.getItem("price");
-   console.log("from payment", price);
+const CheckoutForm = ({singleClass,price}) => {
+ 
   const stripe = useStripe();
   const [cardError, setCardError] = useState();
   const [axiosSecure] = useAxiosSecure();
@@ -16,10 +16,10 @@ const CheckoutForm = () => {
   const {user} = useContext(AuthContext)
 
   useEffect(() => {
-    console.log("from checkOutForm",price)
+    
     if (price) {
-      axiosSecure.post("/content-payment-intent", { price }).then((res) => {
-        console.log("client secret key ", res.data.clientSecret);
+      axiosSecure.post("/content-payment-intent", {price}).then((res) => {
+       
         setClientSecret(res.data.clientSecret);
       });
    }
@@ -72,9 +72,14 @@ const CheckoutForm = () => {
       const payment = {
         email: user?.email,
         name: user?.displayName,
-        price:price,
+        price: singleClass.price,
+        image: singleClass.image,
+        className:singleClass.name,
+        instructor_name:singleClass.instructor_name,
+        status: 'enrolled',
+        date: new Date(),
         transactionId: paymentIntent.id,
-      }
+      };
        
       axiosSecure.post('/payments', payment)
         .then(res => {

@@ -1,134 +1,182 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
+
+
+import { AuthContext } from "../../../Provider/AuthProvider";
+import useAxiosSecure from "../../../hook/UseAxiosSecure";
+import { useContext } from "react";
 import { toast } from "react-hot-toast";
 
-const image_hosting_token = import.meta.env.VITE_image_Token;
 const AddAClass = () => {
-  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`;
-  console.log(image_hosting_token);
   const { user } = useContext(AuthContext);
-  const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("image", data.image[0]);
+  const [axiosSecure] = useAxiosSecure();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-    fetch(img_hosting_url, {
-      method: "POST",
-      body: formData,
-    })
-      .then(res => res.json())
-      .then(imgResponse => {
-        if (imgResponse.success) {
-          const imgURL = imgResponse.data.display_url;
-          const { name, price,instructorName,instructorEmail,availableSets } = data;
-          const newClass = {
-            name,
-            price: parseFloat(price),
-            image: imgURL,
-            instructor_name: instructorName,
-            instructor_email: instructorEmail,
-            available_seats:availableSets
-          };
-          console.log(newClass)
-          fetch("http://localhost:5000/all-class", {
-            method: "POST",
-            headers: {
-              'content-type' : 'application/json'
-            },
-            body:JSON.stringify(newClass)
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.insertedId) {
-                toast.success("class add Successfully");
-              }
-            });
-        }
-        })
- 
+  const onSubmit = (data) => {
+    const {
+      className,
+      image,
+      instructorName,
+      instructorEmail,
+      availableSeats,
+      price,
+    } = data;
+    const newClass = {
+      className,
+      image,
+      instructorName,
+      instructorEmail,
+      availableSeats: parseFloat(availableSeats),
+      price: parseFloat(price),
+      students: 0,
+      status: "pending",
+    };
+
+    axiosSecure.post("/all-class", newClass).then((data) => {
+      console.log("add class", data.data);
+
+      if (data.data.insertedId) {
+        reset();
+        toast.success(`Submitting the new ${className} class was successful.`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    });
   };
 
   return (
-    <div className="container mx-auto mb-10 ">
+    <div className="container mx-auto mb-10">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className=" w-full border shadow-md p-10 rounded-lg">
+        <div className=" w-full border shadow-lg p-10 rounded-lg">
           <h1 className="text-4xl my-4 text-orange-500 font-bold underline text-center">
             Add A Class
           </h1>
-          <div className=" md:grid sm:grid-cols-1 md:grid-cols-2   gap-4 ">
-            <div className="form-control ">
-              <label className="label">
-                <span className="label-text text-lg">Class Image URL</span>
+          <div className="mb-4">
+            <label htmlFor="instructorName" className="block font-medium mb-2">
+              Instructor name
+            </label>
+            <input
+              type="text"
+              id="instructorName"
+              className={`border border-gray-300 p-2 w-full ${
+                errors.instructorName ? "border-red-500" : ""
+              }`}
+              readOnly
+              value={user.displayName}
+            />
+            <input
+              type="hidden"
+              {...register("instructorName")}
+              value={user.displayName}
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="instructorEmail" className="block font-medium mb-2">
+              Instructor email
+            </label>
+            <input
+              type="email"
+              id="instructorEmail"
+              className={`border border-gray-300 p-2 w-full ${
+                errors.instructorEmail ? "border-red-500" : ""
+              }`}
+              readOnly
+              value={user.email}
+            />
+            <input
+              type="hidden"
+              {...register("instructorEmail")}
+              value={user.email}
+            />
+          </div>
+          <div className="flex mb-4">
+            <div className="mr-4 w-1/2">
+              <label htmlFor="className" className="block font-medium mb-2">
+                Class name
               </label>
               <input
-                type="file"
+                type="text"
+                id="className"
+                className={`border border-gray-300 p-2 w-full ${
+                  errors.className ? "border-red-500" : ""
+                }`}
+                {...register("className", { required: true })}
+              />
+              {errors.className && (
+                <span className="text-red-500">This field is required</span>
+              )}
+            </div>
+            <div className="w-1/2">
+              <label htmlFor="classImage" className="block font-medium mb-2">
+                Class Image
+              </label>
+              <input
+                type="url"
+                id="image"
+                className={`border border-gray-300 p-2 w-full ${
+                  errors.image ? "border-red-500" : ""
+                }`}
                 {...register("image", { required: true })}
-                className="file-input file-input-bordered w-full "
               />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-lg">Class Name</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                {...register("name")}
-                className="input  input-bordered"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-lg">Instructor Name</span>
-              </label>
-              <input
-                type="text"
-                name="instructorName"
-                {...register("instructorName")}
-                readOnly
-                defaultValue={user?.displayName}
-                className="input input-bordered"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-lg">Instructor Email</span>
-              </label>
-              <input
-                type="email"
-                name="instructorEmail"
-                {...register("instructorEmail")}
-                readOnly
-                defaultValue={user?.email}
-                className="input input-bordered"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-lg">Available Sets</span>
-              </label>
-              <input
-                type="text"
-                name="availableSets"
-                {...register("availableSets")}
-                className="input input-bordered"
-              />
-            </div>
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-lg">Price</span>
-              </label>
-              <input
-                type="text"
-                name="price"
-                {...register("price")}
-                className="input input-bordered"
-              />
+              {errors.image && (
+                <span className="text-red-500">This field is required</span>
+              )}
             </div>
           </div>
-          <div className="form-control mt-5">
+          <div className="flex">
+            <div className="mr-4 w-1/2">
+              <label
+                htmlFor="availableSeats"
+                className="block font-medium mb-2"
+              >
+                Available seats
+              </label>
+              <input
+                type="number"
+                id="availableSeats"
+                className={`border border-gray-300 p-2 w-full ${
+                  errors.availableSeats ? "border-red-500" : ""
+                }`}
+                {...register("availableSeats", { required: true, min: 1 })}
+              />
+              {errors.availableSeats && (
+                <span className="text-red-500">
+                  This field is required and must be a number greater than 0
+                </span>
+              )}
+            </div>
+            <div className="w-1/2">
+              <label htmlFor="price" className="block font-medium mb-2">
+                Price
+              </label>
+              <input
+                type="number"
+                id="price"
+                className={`border border-gray-300 p-2 w-full ${
+                  errors.price ? "border-red-500" : ""
+                }`}
+                {...register("price", { required: true, min: 0 })}
+              />
+              {errors.price && (
+                <span className="text-red-500">
+                  This field is required and must be a number greater than or
+                  equal to 0
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="flex justify-center mt-7">
             <input
               type="submit"
               className=" py-2  hover:bg-orange-600 bg-orange-500"

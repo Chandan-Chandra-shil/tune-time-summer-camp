@@ -19,16 +19,16 @@ const SelectedClasses = () => {
         }
       });
   };
-  const handlePrice = (price) => {
-    localStorage.setItem("price", price);
+  const handlePrice = (id) => {
+    localStorage.setItem("id", id);
   };
 
   return (
-    <div className="w-[70%] border md:p-10 p-5 shadow-md">
+    <div className=" border md:p-10 p-5 shadow-md">
       <Helmet>
         <title>Tune Time | Selected Classes</title>
       </Helmet>
-      <h2 className="text-center text-3xl font-bold mb-4 text-orange-600">
+      <h2 className="md:text-4xl text-center text-2xl text-orange-600 font-bold ">
         All Selected Classes
       </h2>
 
@@ -68,9 +68,7 @@ const SelectedClasses = () => {
                 <td>
                   <span className="border px-4 py-2 rounded-md font-bold hover:bg-orange-600  bg-orange-500">
                     <Link to="/dash-board/payment">
-                      <button onClick={() => handlePrice(item?.price)}>
-                        Pay
-                      </button>
+                      <button onClick={() => handlePrice(item._id)}>Pay</button>
                     </Link>
                   </span>
 
