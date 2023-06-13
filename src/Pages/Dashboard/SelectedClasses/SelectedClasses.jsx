@@ -1,23 +1,12 @@
-import React, { useContext } from "react";
-
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
-import { AuthContext } from "../../../Provider/AuthProvider";
+
+import { Link } from "react-router-dom";
+import UseSelectedAllClasses from "../../../hook/UseSelectedAllClasses";
 
 const SelectedClasses = () => {
-  const { user } = useContext(AuthContext);
-  const { refetch, data: selectedItem = [] } = useQuery({
-   
-    queryKey: ["all-selectedClasses", user?.email],
-    queryFn: async () => {
-      const res = await fetch(
-        `http://localhost:5000/all-selectedClasses?email=${user?.email}`
-      );
-      return res.json();
-    },
-  });
-  console.log("......",selectedItem)
+  const [selectedItem, refetch] = UseSelectedAllClasses();
+
   const handleDelete = (item) => {
     fetch(`http://localhost:5000/all-selectedClasses/${item?._id}`, {
       method: "DELETE",
@@ -25,11 +14,15 @@ const SelectedClasses = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
-          refetch()
+          refetch();
           toast.success("Delete Successfully");
         }
       });
   };
+  const handlePrice = (price) => {
+    localStorage.setItem("price", price);
+  };
+
   return (
     <div className="w-[70%] border md:p-10 p-5 shadow-md">
       <Helmet>
@@ -70,11 +63,17 @@ const SelectedClasses = () => {
                 </td>
                 <td>{item?.name}</td>
                 <td>{item?.instructor_name}</td>
-                <td>{item?.price}</td>
+                <td>${item?.price}</td>
+
                 <td>
                   <span className="border px-4 py-2 rounded-md font-bold hover:bg-orange-600  bg-orange-500">
-                    Pay
+                    <Link to="/dash-board/payment">
+                      <button onClick={() => handlePrice(item?.price)}>
+                        Pay
+                      </button>
+                    </Link>
                   </span>
+
                   <span
                     onClick={() => handleDelete(item)}
                     className="border px-4 py-2 rounded-md font-bold hover:bg-red-600  bg-red-500 ms-2 text-white"

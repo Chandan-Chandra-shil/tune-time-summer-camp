@@ -6,7 +6,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import slider from "../../../assets/slider.jpg";
+
+import banner1 from "../../../assets/banner1.jpg";
+import banner2 from "../../../assets/banner2.jpg";
+import banner3 from "../../../assets/banner3.jpg";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 const Banner = () => {
@@ -27,13 +30,13 @@ const Banner = () => {
         className="mySwiper "
       >
         <SwiperSlide>
-          <img src={slider} alt="" />
+          <img className=" " src={banner1} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider} alt="" />
+          <img src={banner2} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider} alt="" />
+          <img src={banner3} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
