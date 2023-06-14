@@ -15,12 +15,17 @@ import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
 import Payment from "../Pages/Dashboard/SelectedClasses/Payment";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+
+
+
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+   errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",
@@ -47,6 +52,7 @@ const router = createBrowserRouter([
   {
     path: "dash-board",
     element: <Dashboard></Dashboard>,
+  
     children: [
       {
         path: "selected-classes",
@@ -54,8 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: "payment",
-        element:<Payment></Payment>
-
+        element: <Payment></Payment>,
       },
       {
         path: "enrolled-classes",
@@ -83,6 +88,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+ 
 ]);
 
 export default router;

@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
       //local storage get and set token
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", {
+          .post(" https://tune-time-server.vercel.app/jwt", {
             email: currentUser?.email,
           })
           .then((data) => {

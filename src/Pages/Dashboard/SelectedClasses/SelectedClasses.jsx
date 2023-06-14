@@ -8,9 +8,12 @@ const SelectedClasses = () => {
   const [selectedItem, refetch] = UseSelectedAllClasses();
 
   const handleDelete = (item) => {
-    fetch(`http://localhost:5000/all-selectedClasses/${item?._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      ` https://tune-time-server.vercel.app/all-selectedClasses/${item?._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

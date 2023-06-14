@@ -40,7 +40,7 @@ const SignUp = () => {
             email: data.email,
             image: data.photoURL,
           };
-          fetch("http://localhost:5000/users", {
+          fetch(" https://tune-time-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -71,7 +71,7 @@ const SignUp = () => {
           name: loggedUser.displayName,
           email: loggedUser.email,
         };
-        fetch("http://localhost:5000/users", {
+        fetch(" https://tune-time-server.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

@@ -22,7 +22,7 @@ const ClassesCard = ({ classItem }) => {
         email: user.email,
       };
 
-      fetch("http://localhost:5000/all-selectedClasses", {
+      fetch(" https://tune-time-server.vercel.app/all-selectedClasses", {
         method: "POST",
         headers: {
           "content-type": "application/json",

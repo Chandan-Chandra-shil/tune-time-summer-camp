@@ -7,14 +7,14 @@ const Footer = () => {
     <footer className="  p-10 bg-orange-200 shadow ">
       <div className="container  mx-auto grid sm:grid-cols-1 md:grid-cols-4">
         <div>
-          <p className='mb-4'>
-           
-            <FaMusic className="text-orange-700 md:h-16 md:w-16 h-12 w-12 font-extrabold"></FaMusic>
+          <p className="mb-4">
+            <FaMusic className="text-orange-700 h-8 md:w-12 w-12 font-extrabold"></FaMusic>
           </p>
           <p>
             Tune Time
             <br />
-            Providing reliable tech since 1992
+          We are here
+          to answer your questions and assist <br/> you in any way we can.
           </p>
         </div>
         <div className="mb-4">
@@ -32,29 +32,25 @@ const Footer = () => {
           <li className="list-none">
             <Link to="/">Terms Conditions</Link>
           </li>
-          <li className="list-none">
-            <Link to="/">Submit Listing</Link>
-          </li>
+         
         </div>
         <div className="mb-4">
           <h2 className="text-2xl font-bold">Quick Link</h2>
 
           <li className="list-none">
-            <Link to="/">About</Link>
+            <Link to="/">Home</Link>
           </li>
 
           <li className="list-none">
-            <Link to="/">Project</Link>
+            <Link to="/">Classes</Link>
           </li>
           <li className="list-none">
-            <Link to="/">Our Team</Link>
+            <Link to="/">Instructors</Link>
           </li>
           <li className="list-none">
             <Link to="/">Terms Conditions</Link>
           </li>
-          <li className="list-none">
-            <Link to="/">Submit Listing</Link>
-          </li>
+          
         </div>
 
         <div>

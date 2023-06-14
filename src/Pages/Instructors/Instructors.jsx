@@ -7,7 +7,7 @@ const Instructors = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/all-instructors")
+    fetch(" https://tune-time-server.vercel.app/all-instructors")
       .then((res) => res.json())
       .then((data) => {
         setInstructors(data);

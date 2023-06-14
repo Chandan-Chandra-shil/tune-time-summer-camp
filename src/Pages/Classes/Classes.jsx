@@ -8,7 +8,7 @@ const Classes = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/all-class")
+    fetch(" https://tune-time-server.vercel.app/all-class")
       .then((res) => res.json())
       .then((data) => {
         setClassItems(data);
