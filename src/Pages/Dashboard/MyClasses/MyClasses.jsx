@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosSecure from "../../../hook/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 
 const MyClasses = () => {
@@ -33,6 +34,7 @@ const MyClasses = () => {
               <th>AVAIL. Seats</th>
               <th>Enrolled</th>
               <th>Status</th>
+              <th>Action</th>
               <th></th>
             </tr>
           </thead>
@@ -75,11 +77,14 @@ const MyClasses = () => {
                     {myClass.status}
                   </span>
                 </td>
-                {myClass.feedback && (
-                  <td>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </td>
-                )}
+
+                <td>
+                  <Link to="/dash-board/update-class">
+                    <span className="badge badge-warning badge-outline">
+                      Update Class
+                    </span>
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>

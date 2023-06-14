@@ -16,6 +16,7 @@ import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/Dashboard/ManageClasses/ManageClasses";
 import Payment from "../Pages/Dashboard/SelectedClasses/Payment";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import UpdateClass from "../Pages/Dashboard/MyClasses/UpdateClass";
 
 
 
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
         path: "manage-classes",
         element: <ManageClasses></ManageClasses>,
       },
+      {
+        path: 'update-class',
+        element:<UpdateClass/>
+      }
     ],
   },
  
