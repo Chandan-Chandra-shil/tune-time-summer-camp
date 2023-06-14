@@ -6,6 +6,7 @@ import useAdmin from "../hook/UseAdmin";
 import UserInstructor from "../hook/UseInstructor";
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
+  // const isAdmin = true;
 
   const [isInstructor] = UserInstructor();
 

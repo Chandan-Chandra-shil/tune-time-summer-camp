@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hook/UseAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import "./CheckOutForm.css"
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({singleClass,price}) => {
  
@@ -14,7 +15,7 @@ const CheckoutForm = ({singleClass,price}) => {
   const [transactionId,setTransactionId] = useState('')
   const elements = useElements();
   const {user} = useContext(AuthContext)
-
+    const navigate = useNavigate() 
   useEffect(() => {
     
     if (price) {
@@ -86,6 +87,7 @@ const CheckoutForm = ({singleClass,price}) => {
           console.log(res.data);
           if (res.data.insertedId) {
             //display confirm
+            navigate("/dash-board/selected-classes")
           }
       })
       }

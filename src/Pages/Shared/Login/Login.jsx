@@ -17,13 +17,14 @@ const Login = () => {
   } = useForm();
   const from = location.state?.from?.pathname || "/";
   const onSubmit = (data) => {
+    
     logIn(data.email, data.password)
       .then(() => {
         toast.success("Login Successfully");
         navigate(from ,{replace:true})
       })
       .catch((err) => {
-        console.log(err.message);
+       
         toast.error(err.message);
       });
   };
