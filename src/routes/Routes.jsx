@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-   errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
   {
     path: "dash-board",
     element: <Dashboard></Dashboard>,
-  
+
     children: [
       {
         path: "selected-classes",
@@ -88,12 +88,12 @@ const router = createBrowserRouter([
         element: <ManageClasses></ManageClasses>,
       },
       {
-        path: 'update-class',
-        element:<UpdateClass/>
-      }
+        path: "update-class",
+        element: <UpdateClass />,
+        
+      },
     ],
   },
- 
 ]);
 
 export default router;

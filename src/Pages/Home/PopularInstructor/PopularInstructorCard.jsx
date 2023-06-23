@@ -9,7 +9,7 @@ const PopularInstructorCard = ({ instructor }) => {
     <div className="">
       <div className="border  justify-between mx-4 px-10 py-5 shadow items-center gap-4 flex">
         <div className="rounded-full ring  hover:ring-orange-400 ring-offset-base-100 ring-offset-2">
-          <img className="rounded-full w-48 " src={image} alt="Shoes" />
+          <img className="rounded-full w-48 hover:rotate-2 " src={image} alt="Shoes" />
         </div>
         <div>
           <h2 className=" text-2xl font-bold"> Name: {name}</h2>

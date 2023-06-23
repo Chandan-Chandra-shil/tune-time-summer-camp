@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { FaBars, FaMusic, FaTimes } from "react-icons/fa";
@@ -95,11 +95,11 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-orange-50 shadow-sm">
+    <div className="bg-orange-50 shadow-md">
       <div className=" px-4 py-5 container mx-auto  ">
         <div className="relative flex items-center justify-between">
           <Link to="/" className="inline-flex items-center">
-            <span className="ml-2 text-xl font-bold tracking-wide flex justify-center items-center gap-2 text-gray-800">
+            <span className="ml-2 text-xl font-extrabold  tracking-wide flex justify-center items-center gap-2 text-gray-800 ">
               <FaMusic className="text-orange-700 font-extrabold"></FaMusic>
               Tune Time
             </span>
